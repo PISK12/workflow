@@ -45,4 +45,4 @@ COPY usr/local/etc/php/conf.d/memory_limit.ini /usr/local/etc/php/conf.d/memory_
 
 RUN mkdir -m777 /app
 WORKDIR /app
-ENTRYPOINT bin/console messenger:consume async -vv
+ENTRYPOINT bin/console messenger:consume async -vv --limit=10
