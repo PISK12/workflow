@@ -1,0 +1,44 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: docker/web
+    volumes:
+      - ./:/app
+    ports:
+      - "80:80"
+    depends_on:
+      - database
+    restart: unless-stopped
+
+  cli:
+    build:
+      context: docker/cli
+    volumes:
+      - ./:/app
+    depends_on:
+      - database
+    restart: unless-stopped
+
+  database:
+    image: library/postgres:13-alpine
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppasswd
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/database/docker-entrypoint-initdb.d/create_application_db.sql:/docker-entrypoint-initdb.d/create_application_db.sql
+      - ./docker/database/docker-entrypoint-initdb.d/create_application_test_db.sql:/docker-entrypoint-initdb.d/create_application_test_db.sql
+    restart: unless-stopped
+
+#  node:
+#    image: node:15
+#    working_dir: /app
+#    volumes:
+#      - ./:/app
+#    command: node node_modules/.bin/encore dev --watch
+#    depends_on:
+#      - web
+
