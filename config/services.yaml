@@ -1,0 +1,63 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    Google\Cloud\Storage\StorageClient:
+        class: Google\Cloud\Storage\StorageClient
+        factory: '@App\Google\GoogleStorageFactory'
+        arguments:
+            - '%env(resolve:GOOGLE_PROJECT_ID)%'
+
+    App\Service\Podcast\PodcastCrawler:
+        class: App\Service\Podcast\PodcastStrategyCrawler
+
+    Google\Client:
+        class: Google\Client
+        factory: '@App\Google\GoogleClientFactory'
+
+    App\TriliumNotes\ServerUrl:
+        class: App\TriliumNotes\ServerUrl
+        arguments:
+            - '%env(resolve:TRILIUM_NOTES_URL)%'
+
+
+    App\TriliumNotes\AccessToken:
+        class: App\TriliumNotes\AccessToken
+        factory: '@App\TriliumNotes\AccessTokenFactory'
+        arguments:
+            $username: '%env(resolve:TRILIUM_NOTES_USERNAME)%'
+            $password: '%env(resolve:TRILIUM_NOTES_PASSWORD)%'
+
+    App\FileSystem\GoogleStorageFileSystem:
+        arguments:
+            - '@Google\Cloud\Storage\StorageClient'
+            - '%env(resolve:GOOGLE_STORAGE_TEMP_BUCKET)%'
+
+    App\Service\Transcript\TranscriptFromAudio:
+        arguments:
+            - '@Google\Cloud\Storage\StorageClient'
+            - '%env(resolve:GOOGLE_STORAGE_TEMP_BUCKET)%'
+
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
