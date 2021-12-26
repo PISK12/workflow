@@ -6,7 +6,7 @@ services:
     volumes:
       - ./:/app
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - database
     restart: unless-stopped
@@ -30,15 +30,4 @@ services:
       - "5432:5432"
     volumes:
       - ./docker/database/docker-entrypoint-initdb.d/create_application_db.sql:/docker-entrypoint-initdb.d/create_application_db.sql
-      - ./docker/database/docker-entrypoint-initdb.d/create_application_test_db.sql:/docker-entrypoint-initdb.d/create_application_test_db.sql
     restart: unless-stopped
-
-#  node:
-#    image: node:15
-#    working_dir: /app
-#    volumes:
-#      - ./:/app
-#    command: node node_modules/.bin/encore dev --watch
-#    depends_on:
-#      - web
-

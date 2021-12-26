@@ -24,9 +24,6 @@ RUN apt-get install -y libzip-dev zip \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
-# add OPCache
-RUN docker-php-ext-install opcache
-
 # add xdebug
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
@@ -48,8 +45,6 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
 # add php config
-ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="1"
-COPY usr/local/etc/php/conf.d/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY usr/local/etc/php/conf.d/realpath.ini /usr/local/etc/php/conf.d/realpath.ini
 COPY usr/local/etc/php/conf.d/post_max_size.ini /usr/local/etc/php/conf.d/post_max_size.ini
 COPY usr/local/etc/php/conf.d/upload_max_filesize.ini /usr/local/etc/php/conf.d/upload_max_filesize.ini
