@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "033767f8e81082fae0e70fbebaa223e4",
+    "content-hash": "adb7dfba7563421dd62a439a2215cf8f",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -3026,6 +3026,67 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
             },
             "time": "2021-11-30T19:35:32+00:00"
+        },
+        {
+            "name": "norkunas/youtube-dl-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/norkunas/youtube-dl-php.git",
+                "reference": "51e352c032b9231d424c7ede97554c28b7d932ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/norkunas/youtube-dl-php/zipball/51e352c032b9231d424c7ede97554c28b7d932ac",
+                "reference": "51e352c032b9231d424c7ede97554c28b7d932ac",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.4.0",
+                "symfony/filesystem": "^4.4|^5.1|^6.0",
+                "symfony/polyfill-php80": "^1.18",
+                "symfony/process": "^4.4|^5.1|^6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mikey179/vfsstream": "^1.6.7",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "symfony/phpunit-bridge": "^5.1.5|^6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "YoutubeDl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomas Norkūnas",
+                    "email": "norkunas.tom@gmail.com"
+                }
+            ],
+            "description": "youtube-dl wrapper for php",
+            "keywords": [
+                "youtube",
+                "youtube-dl"
+            ],
+            "support": {
+                "issues": "https://github.com/norkunas/youtube-dl-php/issues",
+                "source": "https://github.com/norkunas/youtube-dl-php/tree/v2.1.1"
+            },
+            "time": "2021-12-29T13:51:08+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -6494,6 +6555,67 @@
             "time": "2021-05-21T13:25:03+00:00"
         },
         {
+            "name": "symfony/process",
+            "version": "v6.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/process.git",
+                "reference": "71da2b7f3fdba460fcf61a97c8d3d14bbf3391ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/process/zipball/71da2b7f3fdba460fcf61a97c8d3d14bbf3391ad",
+                "reference": "71da2b7f3fdba460fcf61a97c8d3d14bbf3391ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Executes commands in sub-processes",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v6.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-12-27T21:05:08+00:00"
+        },
+        {
             "name": "symfony/proxy-manager-bridge",
             "version": "v6.0.1",
             "source": {
@@ -8011,7 +8133,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "norkunas/youtube-dl-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

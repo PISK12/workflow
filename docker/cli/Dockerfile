@@ -33,6 +33,12 @@ RUN docker-php-ext-install bcmath
 RUN apt-get install -y libxslt1-dev && \
     docker-php-ext-install xsl
 
+    # add youtube
+RUN apt-get install -y ffmpeg
+RUN apt-get install -y python3 \
+    && curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl \
+    && chmod a+rx /usr/local/bin/youtube-dl
+
 # clean
 RUN apt-get clean -y && apt-get autoclean -y && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*

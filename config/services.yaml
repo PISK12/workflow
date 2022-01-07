@@ -28,6 +28,10 @@ services:
         arguments:
             - '%env(resolve:GOOGLE_PROJECT_ID)%'
 
+    YoutubeDl\YoutubeDl:
+        class: YoutubeDl\YoutubeDl
+        factory: '@App\Google\YoutubeDlFactory'
+
     App\Service\Podcast\PodcastCrawler:
         class: App\Service\Podcast\PodcastStrategyCrawler
 
@@ -39,7 +43,6 @@ services:
         class: App\TriliumNotes\ServerUrl
         arguments:
             - '%env(resolve:TRILIUM_NOTES_URL)%'
-
 
     App\TriliumNotes\AccessToken:
         class: App\TriliumNotes\AccessToken
