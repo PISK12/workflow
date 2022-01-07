@@ -1,2 +1,2 @@
 update:
-	git pull && docer-compose build && docer-compose stop && docer-compose up -d && docer-compose exec web composer install
+	git pull && docker-compose build && docker-compose stop && docker-compose up -d && docker-compose exec web composer install
